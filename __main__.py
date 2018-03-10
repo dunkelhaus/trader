@@ -4,23 +4,27 @@
 import os
 from binance.client import Client
 from transactors.binanceBuyer import BinanceBuyer
+from console.display import welcomeMenu
+from executives.noobBuyer import noobBuyer
+from executives.noobSeller import noobSeller
 
 # Get access using API token and API secret
 client = Client(os.environ['APITOKEN'], os.environ['APISEC'])
 
 def main():
-    print("Starting Noob Trader ...")
-    print("A Noob buys - always buys - blindly buys - always market price.")
-    print("To a Noob, everything is bullish, everytime.")
-    print("This is an NCASH Noob")
-    coinpair = 'NCASHBTC'
+    inp = -1
+    while (inp != 0):
+        welcomeMenu()
+        inp = input("\n Your Choice: ")
 
-    buyer = BinanceBuyer(client)
-    result = buyer.buy(coinpair, 50)
-
-    if (result):
-        print("Noob has bought. God bless Noobs.")
-
+        if (inp == 1):
+            noobBuyer(client)
+        if (inp == 2):
+            noobSeller(client)
+        if (inp == 0):
+            exit()
+        if (inp == -1):
+            continue
     return
 
 if __name__ == "__main__" : main();
