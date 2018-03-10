@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp executives/$1 __main__.py
