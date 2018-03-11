@@ -1,6 +1,7 @@
 # Contains methods for important display configurations
 
 import os
+from binance.client import Client
 
 def welcomeMenu():
     print("\n                                 Welcome to Trader.                                    ")
@@ -28,4 +29,15 @@ def orderConfirmation(coinpair, price, qty, orderType):
     else:
         return False
 
+    return
+
+def showFunds(coin, balance, locked):
+    
+    print("========== Funds ===========");
+    print("Coin: %s \n Available: %s \n Locked: %s \n" %(coin, balance, locked));
+
+    return
+
+def showPrice():
+    
     return

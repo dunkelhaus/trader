@@ -5,6 +5,7 @@ import os
 from binance.client import Client
 from transactors.binanceSeller import BinanceSeller
 from console.display import orderConfirmation
+from console.display import showPrice
 
 def noobSeller(client):
     print("Starting Noob Trader ...")
@@ -19,6 +20,7 @@ def noobSeller(client):
     price = ''
     qty = input("How much do you want to sell?  :")
     print("\n")
+    showPrice(client)
     price = raw_input("At what price?")
     orderConfirmation(coinpair, price, qty, "SALE")
     print("\nSelling ...")
