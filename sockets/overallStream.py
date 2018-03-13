@@ -71,7 +71,7 @@ def priceSocketCallback(msg):
     if diff > interval:
         print("============= Universal Price Update ===============")
         for i in msg:
-            print("Binance Feed:  {}  Open: {} High: {} Low: {} Close: {} Volume: {}".format(i['s'], i['q'], i['o'], i['h'], i['l'], i['c'], i['v']))
+            print("Binance Feed:  {}  Open: {} High: {} Low: {} Close: {} Volume: {}".format(i['s'], i['o'], i['h'], i['l'], i['c'], i['v']))
         #print(msg)
         print ("Price update complete. Next update in 2:00 minutes.")
         start = current_milli_time()
