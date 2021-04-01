@@ -1,0 +1,2769 @@
+{
+	"info": {
+		"_postman_id": "755cdd4e-2b09-4c3d-bf97-f63b2643253d",
+		"name": "Binance delivery futures API",
+		"description": "Binance official supported Postman collections.<br/>\n- API documents: https://binance-docs.github.io/apidocs/futures/en/\n- Telegram: https://t.me/binance_api_english\n- Open Issue at: https://github.com/binance-exchange/binance-api-postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Market",
+			"item": [
+				{
+					"name": "Test Connectivity",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/ping",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"ping"
+							]
+						},
+						"description": "Test connectivity to the Rest API."
+					},
+					"response": []
+				},
+				{
+					"name": "Check Server Time",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/time",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"time"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exchange Information (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/exchangeInfo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"exchangeInfo"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Book (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/depth?symbol=BTCUSDT&limit=100",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"depth"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTCUSDT"
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"description": "Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recent Trades List (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/trades?symbol=&limit=500",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"trades"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "500",
+									"description": "Default 500; max 1000."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Old Trades Lookup (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/fapi/v1/historicalTrades?symbol=&limit=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"fapi",
+								"v1",
+								"historicalTrades"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 500; max 1000."
+								},
+								{
+									"key": "fromId",
+									"value": "''",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This endpoint need your API key only, not the secret key."
+					},
+					"response": []
+				},
+				{
+					"name": "Compressed/Aggregate Trades List (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/aggTrades?symbol=&limit=500&fromId&startTime&endTime",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"aggTrades"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "500",
+									"description": "Default 500; max 1000."
+								},
+								{
+									"key": "fromId",
+									"value": null
+								},
+								{
+									"key": "startTime",
+									"value": null
+								},
+								{
+									"key": "endTime",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index Price and Mark Price",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/premiumIndex?symbol=&pair=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"premiumIndex"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Funding Rate History of Perpetual Futures",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/fundingRate?symbol=&startTime=&endTime=&limit=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"fundingRate"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 100; max 1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kline/Candlestick Data (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/klines?symbol=&limit=&interval=&startTime&endTime",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"klines"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 500; max 1500."
+								},
+								{
+									"key": "interval",
+									"value": "",
+									"description": "1m, 1h, 1d, etc"
+								},
+								{
+									"key": "startTime",
+									"value": null
+								},
+								{
+									"key": "endTime",
+									"value": null
+								}
+							]
+						},
+						"description": "Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time."
+					},
+					"response": []
+				},
+				{
+					"name": "Continuous Contract Kline/Candlestick Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/continuousKlines?pair=&contractType=&interval=&startTime&endTime&limit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"continuousKlines"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "contractType",
+									"value": ""
+								},
+								{
+									"key": "interval",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": null
+								},
+								{
+									"key": "endTime",
+									"value": null
+								},
+								{
+									"key": "limit",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index Price Kline/Candlestick Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/indexPriceKlines?pair=&interval=&startTime&endTime&limit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"indexPriceKlines"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "interval",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": null
+								},
+								{
+									"key": "endTime",
+									"value": null
+								},
+								{
+									"key": "limit",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mark Price Kline/Candlestick Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/markPriceKlines?symbol=&interval=&startTime=&endTime=&limit=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"markPriceKlines"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "interval",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "24hr Ticker Price Change Statistics (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/ticker/24hr?symbol=&pair",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"ticker",
+								"24hr"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": null
+								}
+							]
+						},
+						"description": "24 hour rolling window price change statistics.\n\nCareful when accessing this with no symbol.\n\nWeight:\n\n1 for a single symbol;\n\n40 when the symbol parameter is omitted"
+					},
+					"response": []
+				},
+				{
+					"name": "Symbol Price Ticker (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/ticker/price?symbol=&pair",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"ticker",
+								"price"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": null
+								}
+							]
+						},
+						"description": "Latest price for a symbol or symbols."
+					},
+					"response": []
+				},
+				{
+					"name": "Symbol Order Book Ticker (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/ticker/bookTicker?symbol=&pair",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"ticker",
+								"bookTicker"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": null
+								}
+							]
+						},
+						"description": "Best price/qty on the order book for a symbol or symbols."
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Liquidation Orders (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/allForceOrders?symbol=&pair=&startTime=&endTime=&limit=100",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"allForceOrders"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"description": "Default:100 Max:1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Open Interest (MARKET_DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/openInterest?symbol=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"openInterest"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get present open interest of a specific symbol."
+					},
+					"response": []
+				},
+				{
+					"name": "Open Interest Statistics (MARKET DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/futures/data/openInterestHist?pair=&contractType=ALL&period=5m&limit=&startTime=&endTime=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"futures",
+								"data",
+								"openInterestHist"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "contractType",
+									"value": "ALL",
+									"description": "ALL,CURRENT_QUARTER,NEXT_QUARTER"
+								},
+								{
+									"key": "period",
+									"value": "5m",
+									"description": "\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 30,Max 500"
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get present open interest of a specific symbol."
+					},
+					"response": []
+				},
+				{
+					"name": "Top Trader Long/Short Ratio (Accounts) (MARKET DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/futures/data/topLongShortAccountRatio?pair=&period=5m&limit=&startTime=&endTime=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"futures",
+								"data",
+								"topLongShortAccountRatio"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "period",
+									"value": "5m",
+									"description": "\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 30,Max 500"
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get present open interest of a specific symbol."
+					},
+					"response": []
+				},
+				{
+					"name": "Top Trader Long/Short Ratio (Positions) (MARKET DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/futures/data/topLongShortPositionRatio?pair=&period=5m",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"futures",
+								"data",
+								"topLongShortPositionRatio"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "period",
+									"value": "5m",
+									"description": "\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 30,Max 500",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "endTime",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get present open interest of a specific symbol."
+					},
+					"response": []
+				},
+				{
+					"name": "Long/Short Ratio (MARKET DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/futures/data/globalLongShortAccountRatio?pair=&period=5m",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"futures",
+								"data",
+								"globalLongShortAccountRatio"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "period",
+									"value": "5m",
+									"description": "\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 30,Max 500",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "endTime",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get present open interest of a specific symbol."
+					},
+					"response": []
+				},
+				{
+					"name": "Taker Buy/Sell Volume (MARKET DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/futures/data/takerBuySellVol?pair=&period=5m&contractType=ALL",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"futures",
+								"data",
+								"takerBuySellVol"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "period",
+									"value": "5m",
+									"description": "\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\""
+								},
+								{
+									"key": "contractType",
+									"value": "ALL",
+									"description": "ALL,CURRENT_QUARTER,NEXT_QUARTER"
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 30,Max 500",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "endTime",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get present open interest of a specific symbol."
+					},
+					"response": []
+				},
+				{
+					"name": "Basis (MARKET DATA)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/futures/data/basis?pair=&period=5m&contractType=CURRENT_QUARTER",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"futures",
+								"data",
+								"basis"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "period",
+									"value": "5m",
+									"description": "\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"4h\",\"6h\",\"12h\",\"1d\""
+								},
+								{
+									"key": "contractType",
+									"value": "CURRENT_QUARTER",
+									"description": "CURRENT_QUARTER,NEXT_QUARTER"
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 30,Max 500",
+									"disabled": true
+								},
+								{
+									"key": "startTime",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "endTime",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get present open interest of a specific symbol."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Trade",
+			"item": [
+				{
+					"name": "Change Position Mode（TRADE）",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a5bbbe41-e5d7-4773-a879-3ef9c140d20b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/positionSide/dual?dualSidePosition=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"positionSide",
+								"dual"
+							],
+							"query": [
+								{
+									"key": "dualSidePosition",
+									"value": "",
+									"description": "Boolean value. \"true\": Hedge Mode mode; \"false\": One-way Mode"
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Position Mode（USER_DATA）",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "979be84e-d05f-4f99-b8f6-2a2b7439a50e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/positionSide/dual?timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"positionSide",
+								"dual"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Order (TRADE)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8a179332-7190-46a2-a7a9-fc5877051ad5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/order?symbol=&side=&positionSide=&type=&timeInForce=&quantity=&reduceOnly=&price=&newClientOrderId=&stopPrice=&closePosition=&activationPrice=&callbackRate=&workingType=CONTRACT_PRICE&priceProtect=&newOrderRespType=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"order"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "side",
+									"value": ""
+								},
+								{
+									"key": "positionSide",
+									"value": "",
+									"description": "Default BOTH for One-way Mode ;\nLONG or SHORT for Hedge Mode. It must be sent with Hedge Mode."
+								},
+								{
+									"key": "type",
+									"value": ""
+								},
+								{
+									"key": "timeInForce",
+									"value": ""
+								},
+								{
+									"key": "quantity",
+									"value": ""
+								},
+								{
+									"key": "reduceOnly",
+									"value": ""
+								},
+								{
+									"key": "price",
+									"value": ""
+								},
+								{
+									"key": "newClientOrderId",
+									"value": ""
+								},
+								{
+									"key": "stopPrice",
+									"value": ""
+								},
+								{
+									"key": "closePosition",
+									"value": "",
+									"description": "true, false；Close-All，used with STOP_MARKET or TAKE_PROFIT_MARKET."
+								},
+								{
+									"key": "activationPrice",
+									"value": ""
+								},
+								{
+									"key": "callbackRate",
+									"value": "",
+									"description": "Used with TRAILING_STOP_MARKET orders, min 0.1, max 5 where 1 for 1%"
+								},
+								{
+									"key": "workingType",
+									"value": "CONTRACT_PRICE",
+									"description": "stopPrice triggered by: \"MARK_PRICE\", \"CONTRACT_PRICE\". Default \"CONTRACT_PRICE\""
+								},
+								{
+									"key": "priceProtect",
+									"value": ""
+								},
+								{
+									"key": "newOrderRespType",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						},
+						"description": "https://binance-docs.github.io/apidocs/futures/en/#new-order-trade"
+					},
+					"response": []
+				},
+				{
+					"name": "Place Multiple Orders (TRADE)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fea04591-84fe-4182-94c8-795268994762",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/batchOrders?batchOrders=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"batchOrders"
+							],
+							"query": [
+								{
+									"key": "batchOrders",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}",
+									"description": "Default BOTH for One-way Mode ;\nLONG or SHORT for Hedge Mode. It must be sent with Hedge Mode."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Order",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0bb462b5-4de8-41db-a5c5-84d8179175f7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/order?symbol=&orderId=&origClientOrderId=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"order"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "orderId",
+									"value": ""
+								},
+								{
+									"key": "origClientOrderId",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Order",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d586b3de-e2d8-428f-b8ba-d3f36d4cdcd8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/order?symbol=&orderId=&origClientOrderId=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"order"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "orderId",
+									"value": ""
+								},
+								{
+									"key": "origClientOrderId",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel All Open Orders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a2a1cf2a-3f4d-4d23-a491-9319c324aef0",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/allOpenOrders?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"allOpenOrders"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Multiple Orders (TRADE)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "82ed0a6f-7f71-445c-8354-87825b53a9f8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/batchOrders?symbol=&orderIdList=&origClientOrderIdList=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"batchOrders"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "orderIdList",
+									"value": "",
+									"description": "[id,id]  no space in between"
+								},
+								{
+									"key": "origClientOrderIdList",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auto-Cancel All Open Orders (TRADE)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "daa0e5c7-8c3d-44d2-986f-c1ad5a7c02ec",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/countdownCancelAll?symbol=&countdownTime=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"countdownCancelAll"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "countdownTime",
+									"value": "",
+									"description": "countdown time, 1000 for 1 second. 0 to cancel the timer"
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Current Open Order (USER_DATA)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1a86df1e-a709-419e-940f-6591fbf98b2b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/openOrder?symbol=&orderId=&origClientOrderId&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"openOrder"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "orderId",
+									"value": ""
+								},
+								{
+									"key": "origClientOrderId",
+									"value": null
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current All Open Orders (USER_DATA)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1c2d676f-0aa7-4ba2-860f-6d45d4920ca1",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/openOrders?symbol=&pair=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"openOrders"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Orders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a56fc65d-7a81-4009-b22c-37e019298b62",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/allOrders?symbol=&pair=&orderId=&startTime=&endTime=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"allOrders"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "orderId",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "500",
+									"description": "Default 500; max 1000."
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account information",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e13201d6-95fb-44f3-9012-d3f3346430c5",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"value": "{{binance-api-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/account?timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"account"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Initial Leverage",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "61cdb1dc-d0c4-46ee-bb8f-76510fb620b4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/leverage?symbol=&leverage=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"leverage"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "leverage",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Margin Type",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e51c1ac2-55fb-404b-89e0-b7c17c921398",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/marginType?symbol=&marginType=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"marginType"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "marginType",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Isolated Position Margin",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8451b197-7675-40a6-9425-2b6a9da039c0",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/positionMargin?symbol=&positionSide=&amount=&type=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"positionMargin"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "positionSide",
+									"value": "",
+									"description": "Default BOTH for One-way Mode ; \nLONG or SHORT for Hedge Mode. It must be sent with Hedge Mode."
+								},
+								{
+									"key": "amount",
+									"value": ""
+								},
+								{
+									"key": "type",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Postion Margin Change History",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a905d27b-cfb9-462a-a8e0-c38f9e6cb57b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/positionMargin/history?symbol=&type=&startTime=&endTime=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"positionMargin",
+								"history"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "type",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "500"
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Position Information",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "98bc1995-4f4f-4f56-8516-0295aa7b4ae0",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/positionRisk?marginAsset=&pair=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"positionRisk"
+							],
+							"query": [
+								{
+									"key": "marginAsset",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account Trade List",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0fe3c444-b798-47e0-8daa-533a90fc41c3",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/userTrades?symbol=&pair=&startTime=&endTime=&fromId=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"userTrades"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								},
+								{
+									"key": "fromId",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "500"
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Income History",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fd1fb2a2-c748-42ed-aead-a7184acaf175",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/income?symbol=&incomeType=&startTime&endTime&limit=100&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"income"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "incomeType",
+									"value": ""
+								},
+								{
+									"key": "startTime",
+									"value": null
+								},
+								{
+									"key": "endTime",
+									"value": null
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notional Bracket (USER_DATA)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "37e86654-e7c9-42ce-98d0-dd315e0cee5c",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/leverageBracket?pair=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"leverageBracket"
+							],
+							"query": [
+								{
+									"key": "pair",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User's Force Orders (USER_DATA)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1c61474f-9c43-4ed8-af66-d75eea26f7f6",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/forceOrders?symbol=&autoCloseType=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"forceOrders"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "autoCloseType",
+									"value": "",
+									"description": "\"LIQUIDATION\" for liquidation orders, \"ADL\" for ADL orders."
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endTime",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "",
+									"description": "Default 50; max 100."
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Position ADL Quantile Estimation (USER_DATA)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "84ab3fc6-7126-4f78-86a1-06f1c42cac87",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/adlQuantile?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"adlQuantile"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": ""
+								},
+								{
+									"key": "timestamp",
+									"value": "{{timestamp}}"
+								},
+								{
+									"key": "signature",
+									"value": "{{signature}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Data Stream",
+			"item": [
+				{
+					"name": "Create New Listen Key",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/listenKey",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"listenKey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Renew Listen Key",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/listenKey",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"listenKey"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Listen Key",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-MBX-APIKEY",
+								"type": "text",
+								"value": "{{binance-api-key}}"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/dapi/v1/listenKey",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dapi",
+								"v1",
+								"listenKey"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8ff2be8e-e3b1-4b85-9a40-7e9a9ae251d4",
+				"type": "text/javascript",
+				"exec": [
+					"const ts  = Date.now();",
+					"pm.environment.set(\"timestamp\", ts);",
+					"",
+					"let paramsObject = {};",
+					"",
+					"const binance_api_secret = pm.environment.get(\"binance-api-secret\");",
+					"",
+					"const parameters = pm.request.url.query;",
+					"",
+					"parameters.map((param) => {",
+					"    if (param.key != 'signature' && ",
+					"        param.key != 'timestamp' && ",
+					"        !is_empty(param.value) &&",
+					"        !is_disabled(param.disabled)) {",
+					"            paramsObject[param.key] = param.value;",
+					"    }",
+					"})",
+					"        ",
+					"Object.assign(paramsObject, {'timestamp': ts});",
+					"",
+					"if (binance_api_secret) {",
+					"    const queryString = Object.keys(paramsObject).map((key) => {",
+					"        return `${encodeURIComponent(key)}=${paramsObject[key]}`;",
+					"    }).join('&');",
+					"    console.log(queryString);",
+					"    const signature = CryptoJS.HmacSHA256(queryString, binance_api_secret).toString();",
+					"    pm.environment.set(\"signature\", signature);",
+					"}",
+					"",
+					"function is_disabled(str) {",
+					"    return str == true;",
+					"}",
+					"",
+					"function is_empty(str) {",
+					"    if (typeof str == 'undefined' ||",
+					"        !str || ",
+					"        str.length === 0 || ",
+					"        str === \"\" ||",
+					"        !/[^\\s]/.test(str) ||",
+					"        /^\\s*$/.test(str) ||",
+					"        str.replace(/\\s/g,\"\") === \"\")",
+					"    {",
+					"        return true;",
+					"    }",
+					"    else",
+					"    {",
+					"        return false;",
+					"    }",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a0a8f887-8797-4197-bf56-bcd0a6f01f0f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
